@@ -1,18 +1,18 @@
 export class UserService {
   activeUsers: string[]
   inactiveUsers: string[]
-  private _activations = 0
-  get activations() {
-    return this._activations
-  }
-  private _inactivations = 0
-  get inactivations() {
-    return this._inactivations
+  count: {
+    activations: number,
+    inactivations: number
   }
 
   constructor() {
     this.activeUsers = ['Maria', 'Robert']
     this.inactiveUsers = ['Chris', 'David']
+    this.count = {
+      activations: 0,
+      inactivations: 0
+    }
   }
 
   activateUser(user: string) {
@@ -23,7 +23,7 @@ export class UserService {
     if (!this.activeUsers.some(u => u === user)) {
       this.activeUsers.push(user)
     }
-    this._activations++
+    this.count.activations++
   }
 
   inactivateUser(user: string) {
@@ -34,7 +34,7 @@ export class UserService {
     if (!this.inactiveUsers.some(u => u === user)) {
       this.inactiveUsers.push(user)
     }
-    this._inactivations++
+    this.count.inactivations++
   }
 
   getActiveUsers(): string[] {

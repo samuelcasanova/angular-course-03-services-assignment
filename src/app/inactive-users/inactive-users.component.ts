@@ -8,11 +8,13 @@ import { UserService } from '../user.service';
 })
 export class InactiveUsersComponent {
   inactiveUsers: string[]
-  totalInactivations: number
+  count: {
+    inactivations: number
+  }
   
   constructor(private userService: UserService) {
     this.inactiveUsers = this.userService.getInactiveUsers()
-    this.totalInactivations = this.userService.inactivations
+    this.count = this.userService.count
   }
 
   onSetToActive(user: string) {
